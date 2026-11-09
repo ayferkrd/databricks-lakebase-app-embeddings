@@ -1,4 +1,8 @@
 # Databricks notebook source
+# /// script
+# [tool.databricks.environment]
+# environment_version = "6"
+# ///
 # MAGIC %md
 # MAGIC # Ingest Ticker News -> Vector Embeddings (Lakebase)
 # MAGIC
@@ -33,6 +37,10 @@
 # DBTITLE 1,Install all required packages
 # MAGIC %pip uninstall -y psycopg2 psycopg2-binary
 # MAGIC %pip install -q 'databricks-sdk>=0.118.0' sentence-transformers trafilatura requests pandas
+
+# COMMAND ----------
+
+# MAGIC %pip install -q 'databricks-sdk>=0.118.0' sentence-transformers trafilatura requests pandas psycopg2-binary
 
 # COMMAND ----------
 

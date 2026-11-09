@@ -2,6 +2,32 @@
 
 These SQL files must be run manually in your Lakebase Postgres database before running the `ingest_ticker_news_embeddings` notebook.
 
+## One-Step Python Setup (recommended)
+
+Instead of running the three `.sql` files manually, run
+[`setup_lakebase_tables.py`](setup_lakebase_tables.py) — the Python
+equivalent of all three files. It uses `pg8000` (pure-Python driver, no
+psycopg2), so it runs on Serverless notebooks, classic clusters, and your
+laptop. It is idempotent (`IF NOT EXISTS`), so re-running is safe.
+
+From a notebook cell:
+
+```
+%pip install -q pg8000
+%run ../sql/setup_lakebase_tables.py
+```
+
+It defaults to `VECTOR(384)` (all-MiniLM-L6-v2); when `%run` from the
+notebook it picks up the notebook's `EMBEDDING_DIM` widget value
+automatically. Or run it locally:
+
+```
+pip install pg8000 databricks-sdk
+python setup_lakebase_tables.py
+```
+
+## Manual SQL Setup (alternative)
+
 ## Setup Order
 
 ### 1. Run `01_setup_news_table.sql`
